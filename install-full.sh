@@ -2,16 +2,10 @@
 # package/boot/uboot-envtools/files/mediatek_filogic
 sed -i '/cmcc,rax3000m)/i\cmcc,xr30 \|\\' package/boot/uboot-envtools/files/mediatek_filogic
 sed -i '/cmcc,rax3000m-emmc-ubootmod)/i\cmcc,xr30-emmc \|\\' package/boot/uboot-envtools/files/mediatek_filogic
-#sed -i '18 icmcc,xr30-emmc \|\\' package/boot/uboot-envtools/files/mediatek_filogic
-#sed -i '19 icmcc,xr30 \|\\' package/boot/uboot-envtools/files/mediatek_filogic	 
 
 # defconfig/mt7981-ax3000.config
 sed -i '/rax3000m-emmc=y/i\CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_xr30-emmc=y\nCONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7981_DEVICE_cmcc_xr30-emmc=""'  defconfig/mt7981-ax3000.config
 sed -i '/rax3000m=y/i\CONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_xr30=y\nCONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7981_DEVICE_cmcc_xr30=""'  defconfig/mt7981-ax3000.config
-#sed -i '14 iCONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_xr30-emmc=y' defconfig/mt7981-ax3000.config
-#sed -i '15 iCONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7981_DEVICE_cmcc_xr30-emmc=""' defconfig/mt7981-ax3000.config
-#sed -i '16 iCONFIG_TARGET_DEVICE_mediatek_mt7981_DEVICE_cmcc_xr30=y' defconfig/mt7981-ax3000.config
-#sed -i '17 iCONFIG_TARGET_DEVICE_PACKAGES_mediatek_mt7981_DEVICE_cmcc_xr30=""' defconfig/mt7981-ax3000.config
 
 # target/linux/mediatek/mt7981/base-files/lib/upgrade/platform.sh
 sed -i '/cmcc,rax3000m\*/a\\tcmcc,xr30* \|\\' target/linux/mediatek/mt7981/base-files/lib/upgrade/platform.sh
@@ -69,38 +63,6 @@ define Device/cmcc_xr30-emmc\
 endef\
 TARGET_DEVICES += cmcc_xr30-emmc' target/linux/mediatek/image/mt7981.mk
 
-#cat >> target/linux/mediatek/image/mt7981.mk <<-"EOF"
-#
-#define Device/cmcc_xr30
-#  DEVICE_VENDOR := CMCC
-#  DEVICE_MODEL := XR30 NAND
-#  DEVICE_DTS := mt7981-cmcc-xr30
-#  DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
-#  DEVICE_PACKAGES := $(MT7981_USB_PKGS) luci-app-samba4
-#  SUPPORTED_DEVICES := cmcc,xr30
-#  UBINIZE_OPTS := -E 5
-#  BLOCKSIZE := 128k
-#  PAGESIZE := 2048
-#  IMAGE_SIZE := 116736k
-#  KERNEL_IN_UBI := 1
-#  IMAGES += factory.bin
-#  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-#  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-#endef
-#TARGET_DEVICES += cmcc_xr30
-#
-#define Device/cmcc_xr30-emmc
-#  DEVICE_VENDOR := CMCC
-#  DEVICE_MODEL := XR30 eMMC
-#  DEVICE_DTS := mt7981-cmcc-xr30-emmc
-#  DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
-#  SUPPORTED_DEVICES := cmcc,xr30-emmc
-#  DEVICE_PACKAGES := $(MT7981_USB_PKGS) f2fsck losetup mkf2fs kmod-fs-f2fs kmod-mmc \
-#	luci-app-samba4
-#  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-#endef
-#TARGET_DEVICES += cmcc_xr30-emmc
-#EOF
 
 # 生成文件
 cat > target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7981-cmcc-rax3000m-xr30.dtsi <<-"EOF"
