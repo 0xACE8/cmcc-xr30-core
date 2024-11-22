@@ -22,14 +22,18 @@ sed -i '/cmcc,rax3000m-em)/i\\tcmcc,xr30-emmc \|\\' target/linux/mediatek/mt7981
 sed -i 's/mt7981.dtsi/mt7981-cmcc-rax3000m-xr30.dtsi/g' target/linux/mediatek/files-5.4/arch/arm64/boot/dts/mediatek/mt7981-cmcc-rax3000m.dtsi
 
 # target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i 's/lan_mac=\$(mmc_get_mac_binary factory 0x24)/lan_mac=\$(mmc_get_mac_binary factory 0x2a)/g' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i 's/wan_mac=\$(mmc_get_mac_binary factory 0x2a)/wan_mac=\$(mmc_get_mac_binary factory 0x24)/g' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/cmcc,rax3000m-emmc)/i\\tcmcc,xr30-emmc\|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/\*rax3000m\*)/i\\t\*cmcc,xr30\* \|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/\*rax3000m\*)/{n;d}' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/\*rax3000m\*)/a\\t\t\t"0:lan:3" "1:lan:2" "2:lan:1" "6u@eth0"' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/\*rax3000m\*)/a\\t\tucidef_add_switch "switch0" \\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
-sed -i '/\*rax3000m\*)/a\\t\tucidef_set_interfaces_lan_wan "eth0" "eth1"' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+sed -i '/abt,asr3000 /a\\t\*cmcc,xr30\* \|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+sed -i '/cmcc,rax3000m-emmc)/i\\tcmcc,xr30-emmc \|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+sed -i '/cmcc,rax3000m)/i\\tcmcc,xr30 \|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i 's/lan_mac=\$(mmc_get_mac_binary factory 0x24)/lan_mac=\$(mmc_get_mac_binary factory 0x2a)/g' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i 's/wan_mac=\$(mmc_get_mac_binary factory 0x2a)/wan_mac=\$(mmc_get_mac_binary factory 0x24)/g' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/cmcc,rax3000m-emmc)/i\\tcmcc,xr30-emmc\|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/\*rax3000m\*)/i\\t\*cmcc,xr30\* \|\\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/\*rax3000m\*)/{n;d}' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/\*rax3000m\*)/a\\t\t\t"0:lan:3" "1:lan:2" "2:lan:1" "6u@eth0"' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/\*rax3000m\*)/a\\t\tucidef_add_switch "switch0" \\' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+#sed -i '/\*rax3000m\*)/a\\t\tucidef_set_interfaces_lan_wan "eth0" "eth1"' target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+
 
 # target/linux/mediatek/image/mt7981.mk
 sed -i '/TARGET_DEVICES += cmcc_rax3000m-emmc/a \
